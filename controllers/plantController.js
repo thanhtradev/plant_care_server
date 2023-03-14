@@ -88,9 +88,8 @@ module.exports = {
         command: "on",
         duration: 10
       }
-
       // publish the action via mqtt 
-      mqttClient.publish(`plant/${plant.id}/water_pump/control`, payload);
+      mqttClient.publish(`plant/${plant.id}/water_pump/control`, JSON.stringify(payload));
 
       await plantService.updatePlant(req.params.id, {
         lastWateredAt: Date.now()
