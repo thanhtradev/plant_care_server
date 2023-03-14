@@ -83,6 +83,9 @@ module.exports = {
       // do watering action
       await plantService.waterPlant(plant);
 
+      // create the water log for the plant
+      await plantService.createWaterLog(plant.id);
+
       // create the payload for the mqtt message
       let payload = {
         command: "on",
