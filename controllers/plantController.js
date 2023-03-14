@@ -82,9 +82,15 @@ module.exports = {
       }
       // do watering action
       await plantService.waterPlant(plant);
-      console.log(`plant/${plant.id}/water`)
+
+      // create the payload for the mqtt message
+      let payload = {
+        command: "on",
+        duration: 10
+      }
+
       // publish the action via mqtt 
-      mqttClient.publish(`plant/${plant.id}/water`, "water");
+      mqttClient.publish(`plant/${plant.id}/water_pump/control`, payload);
 
       await plantService.updatePlant(req.params.id, {
         lastWateredAt: Date.now()

@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const plantRoutes = require('./routes/plantRoutes');
 const app = express();
+const morgan = require('morgan');
+
 const moistureLogSubscriber = require('./subscribers/moistureLogSubscriber');
 
 require('dotenv').config({
@@ -22,6 +24,9 @@ mongoose.connect(process.env.ATLAS_URI, {
 
 // Use body-parser middleware
 app.use(bodyParser.json());
+
+// Logging middleware
+app.use(morgan('combined'));
 
 // Use the plant routes
 app.use('/api', plantRoutes);
