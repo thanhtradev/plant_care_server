@@ -12,8 +12,12 @@ const PlantSchema = new Schema({
   },
   lastWateredAt: {
     type: Date,
+    // default: Date.now()
+  },
+  createdAt: {
+    type: Date,
     default: Date.now()
-  }
+  },
 });
 
 module.exports = mongoose.model('Plant', PlantSchema);
