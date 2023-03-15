@@ -1,0 +1,33 @@
+name: Build and Deploy to DigitalOcean
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy Nodejs App to DigitalOcean
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DIGITALOCEAN_HOST }}
+          key: ${{ secrets.DIGITALOCEAN_KEY }}
+          username: ${{ secrets.DIGITALOCEAN_USERNAME }}
+          passphrase: ${{ secrets.DIGITALOCEAN_PASSPHRASE }}
+          script: |
+            cd plant_care_server
+            git pull
+            npm install
+
+            rm .env
+            touch .env
+            echo "PORT=3000" >> .env
+            echo "ATLAS_URI=${{ secrets.ATLAS_URI }}" >> .env
+            echo "MQTT_BROKER_URL=${{ secrets.MQTT_BROKER_URL }}" >> .env
+            echo "MQTT_PASSWORD=${{ secrets.MQTT_PASSWORD }}" >> .env
+            echo "MQTT_USERNAME=${{ secrets.MQTT_USERNAME }}" >> .env
+            echo "PLANT_MOISTURE_TOPIC_REGEX=${{ secrets.PLANT_MOISTURE_TOPIC_REGEX }}" >> .env
+
+            pm2 restart all
