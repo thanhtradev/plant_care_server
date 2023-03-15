@@ -15,7 +15,7 @@ jobs:
           host: ${{ secrets.DIGITALOCEAN_HOST }}
           key: ${{ secrets.DIGITALOCEAN_KEY }}
           username: ${{ secrets.DIGITALOCEAN_USERNAME }}
-          passphrase: ${{ secrets.DIGITALOCEAN_PASSPHRASE }}
+          # passphrase: ${{ secrets.DIGITALOCEAN_PASSPHRASE }}
           script: |
             cd plant_care_server
             git pull
