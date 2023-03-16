@@ -3,7 +3,7 @@ const router = express.Router();
 const plantController = require('../controllers/plantController');
 const waterController = require('../controllers/waterController');
 
-router.post('/plants', plantController.createPlant);
+router.post('/plant', plantController.createPlant);
 router.get('/plants', plantController.getAllPlants);
 router.get('/plants/:id', plantController.getPlantById);
 router.put('/plants/:id', plantController.updatePlant);

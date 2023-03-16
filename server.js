@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const plantRoutes = require('./routes/plantRoutes');
+const moistureRoutes = require('./routes/moistureRoutes');
 const app = express();
 const morgan = require('morgan');
 
@@ -30,6 +31,8 @@ app.use(morgan('combined'));
 
 // Use the plant routes
 app.use('/api', plantRoutes);
+// Use the moisture routes
+app.use('/api', moistureRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
