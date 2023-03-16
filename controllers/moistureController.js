@@ -17,8 +17,8 @@ module.exports = {
         // Return 5 most recent MoistureLog entries
         for (let i = 0; i < 5; i++) {
             chartData.push({
-                x: moistureLog[i].timestamp,
-                y: moistureLog[i].moisture
+                timestamp: moistureLog[i].timestamp,
+                moisture: moistureLog[i].moisture
             });
         }
         res.status(200).json(chartData);
