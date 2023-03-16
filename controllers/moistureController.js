@@ -15,7 +15,7 @@ module.exports = {
         // create chartData
         let chartData = [];
         // Return 5 most recent MoistureLog entries
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 10; i++) {
             chartData.push({
                 timestamp: moistureLog[i].timestamp,
                 moisture: moistureLog[i].moisture
